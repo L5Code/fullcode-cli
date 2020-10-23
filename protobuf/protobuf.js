@@ -1,3 +1,4 @@
+//protocol-buffers  RPC(远程过程调用)
 const protobuf = require("protocol-buffers");
 const fs = require("fs");
 
