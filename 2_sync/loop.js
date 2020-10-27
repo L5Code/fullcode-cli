@@ -1,8 +1,9 @@
-const eventloop = {
+// 观察者模式，监听事件
+const eventLoop = {
   queue: [],
   loop() {
     while (this.queue.length) {
-      var callback = this.queue.shift();
+      let callback = this.queue.shift();
       callback();
     }
     setTimeout(this.loop.bind(this), 50);
@@ -11,16 +12,16 @@ const eventloop = {
     this.queue.push(callback);
   },
 };
-eventloop.loop();
+eventLoop.loop();
 
 setTimeout(() => {
-  eventloop.add(function () {
+  eventLoop.add(function () {
     console.log(1);
   });
 }, 500);
 
 setTimeout(() => {
-  eventloop.add(function () {
+  eventLoop.add(function () {
     console.log(2);
   });
 }, 800);

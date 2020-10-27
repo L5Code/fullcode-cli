@@ -8,7 +8,7 @@ function interview(callback) {
     }
   }, 500);
 }
-
+// 执行
 interview(function (res) {
   if (res instanceof Error) {
     console.log("cry");
