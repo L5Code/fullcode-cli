@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "easy_sock": "^0.4.1",
     "glob": "^7.1.6",
+    "koa": "^2.13.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
     "protocol-buffers": "^4.2.0"
   },
   "devDependencies": {

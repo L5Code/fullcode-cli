@@ -1,0 +1,18 @@
+message Column {
+  required int32 id = 1;
+  required string column_h1 = 2;
+  required string column_h2 = 3;
+  required string column_h3 = 4;
+  required string column_h4 = 5;
+  optional string column_h5 = 6;
+}
+
+message ColumnResponse {
+  required Column column = 1;
+  repeated Column recommendColumns = 2;
+}
+
+message ColumnRequest {
+  required int32 id = 1;
+}
+
