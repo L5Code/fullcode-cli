@@ -1,61 +1,78 @@
 # 如何安装？
 
-npm install coderwhy -g
-创建项目
-目前支持 Vue，后期会支持 React，Angular 考虑中~
+`npm install wecode -g`
 
-vue 项目模块已经帮你配置：
+# 创建项目
 
-常用的目录结构（你可以在此基础上修改）
-vue.config.js（其中配置了别名，你可以自行修改和配置更多）
-axios（网络请求 axios 的安装以及二次封装）
-vue-router（router 的安装和配置，另外有路由的动态加载，后面详细说明）
-vuex（vuex 的安装和配置，另外有动态加载子模块，后面详细说明）
-创建项目
+目前支持 Koa2.\* ,后期会支持 Express,前端框架 Vue; React 考虑中~
 
-coderwhy create your_project_name
-自动拉取项目模板、安装项目依赖、打开浏览器 http://localhost:8080/、自动启动项目
+# Koa2 项目模块已经帮你配置：
 
-项目开发
-项目开发目前提供三个功能：
+## 常用的目录结构
 
-创建 Vue 组件
-创建 Vue 页面，并配置路由
-创建 Vuex 子模块
-创建 Vue 组件：
-coderwhy addcpn YourComponentName # 例如 coderwhy add NavBar，默认会存放到 src/components 文件夹中
-coderwhy addcpn YourComponentName -d src/pages/home # 也可以指定存放的具体文件夹
-创建 Vue 页面，并配置路由
-coderwhy addpage YourPageName # 例如 coderwhy addpage Home，默认会放到 src/pages/home/Home.vue 中，并且会创建 src/page/home/router.js
-coderwhy addpage YourPageName -d src/views # 也可以指定文件夹，但需要手动集成路由
-为什么会创建 router.js 文件：
+```
+├── bin                        # 项目初始化脚本
+├── cache                      # 数据缓存
+│   │── api                    # 缓存存储目录
+│   └── index.js               # 数据缓存实现代码
+├── config                     # 项目配置文件夹
+│   │── database.config.js     # 数据库配置文件
+│   │── table.config.js        # 数据表配置文件
+│   └── index.js               # 基本配置文件
+├── database                   # 静态资源
+│   │── database.function.js   # 数据库连接方法封装文件
+│   └── db.js                  # 数据库连接文件
+├── middleware                 # 中间件
+├── public                     # 公共静态资源文件
+├── routes                     # 动态路由文件
+├── routesFunc                 # 动态路由的专属方法，不通用
+├── timedtask                  # 定时任务
+├── utils                      # 公共方法
+│   │── dbMiddleware.js        # 访问数据库方法
+│   │── error.js               # 错误回调方法
+│   └── index.js               # 基本通用方法
+├── views                      # 接口平台网站
+├── app.js                     # 入口文件
+├── .eslintrc.js               # eslint 配置项
+├── pm2.json                   # pm2服务启动配置文件
+├── package-lock.json          # package-lock.json
+└── package.json               # package.json
+```
 
-router.js 文件是路由的其中一个配置；
-创建该文件中 src/router/index.js 中会自动加载到路由的 routes 配置中，不需要手动配置了（如果是自己配置的文件夹需要手动配置）
-src/router/index.js 中已经完成如下操作：
+# 创建项目
 
-// 动态加载 pages 中所有的路由文件
-const files = require.context('@/pages', true, /router\.js$/);
-const routes = files.keys().map(key => {
-const page = require('@/pages' + key.replace('.', ''));
-return page.default;
-})
-创建 Vuex 子模块
-coderwhy addstore YourVuexChildModuleName # 例如 coderwhy addstore home，默认会放到 src/store/modules/home/index.js 和 types.js
-coderwhy addstore YourVuexChildModuleName -d src/vuex/modules # 也可以指定文件夹
-创建完成后，不需要手动配置，已经动态将所有子模块集成进去：
+wecode create your_project_name koa
 
-// 动态加载 modules
-const modules = {}
-const files = require.context('./', true, /index\.js$/);
-files.keys().filter(key => {
-  if (key === './index.js') return false;
-  return true
-}).map(key => {  
-  // 获取名字
-  const modulePath = key.replace('./modules/', '');
-  const moduleName = modulePath.replace('/index.js', '');
-  const module = require(`${key}`);
+1. 自动拉取项目模板
+2. 安装项目依赖
+3. 打开浏览器 http://localhost:3000/
+4. 自动启动项目
 
-modules[`${moduleName}`] = module.default;
-})
+# 项目开发
+
+项目开发目前提供一个功能：
+
+- 创建 Router 路由组件，并自动配置路由：
+
+wecode addrouter YourRouterName # 例如 wecode addrouter user，默认会存放到 /routes 文件夹中
+
+wecode addrouter YourComponentName -d config/test # 也可以指定存放的具体文件夹,但是需要在 app.js 自行注册路由
+
+- 为什么 router 文件不存放在 routes 文件夹中需要自行注册路由：
+
+文件夹 routes 中会自动加载到路由到项目的 routes 配置中，（实际上是一个读取文件夹的过程）不需要手动配置了（如果是自己配置的文件夹需要手动配置）
+
+routes/index.js 中已经完成如下操作：
+
+```
+// 动态加载 routes 中所有的路由文件
+for (let item of fs.readdirSync(routesUrl)) {
+  let routerName = path.win32.basename(item, '.js');
+  routes[routerName] = require(path.resolve(routesUrl, routerName));
+}
+
+// 动态路由映射
+Object.keys(routes).forEach(key => {
+  app.use(routes[key].routes(), routes[key].allowedMethods());
+});
+```
