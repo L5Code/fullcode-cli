@@ -1,29 +1,34 @@
 {
-  "name": "wecode_init",
-  "version": "0.1.0",
-  "description": "",
-  "main": "wecode.js",
+  "name": "fullcode-cli",
+  "version": "1.0.0",
+  "description": "`npm install wecode -g`",
+  "main": "fullcode.js",
   "bin": {
     "fullcode": "fullcode.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "directories": {
+    "lib": "lib"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wangxinleo/wecode_init.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wangxinleo/wecode_init/issues"
-  },
-  "homepage": "https://github.com/wangxinleo/wecode_init#readme",
   "dependencies": {
     "commander": "^7.2.0",
     "download-git-repo": "^3.0.2",
     "ejs": "^3.1.6",
     "inquirer": "^8.0.0",
     "open": "^8.0.4"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangxinleo/fullcode-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangxinleo/fullcode-cli/issues"
+  },
+  "homepage": "https://github.com/wangxinleo/fullcode-cli#readme"
 }
