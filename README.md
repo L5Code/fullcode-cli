@@ -256,11 +256,11 @@ $ fullcode add-vue-store hello -d src/store/modules
 
 ## ❓ 提问
 
-- [报告问题]()
-
-## 🙏 特别鸣谢
+- [报告问题](https://github.com/wangxinleo/fullcode-cli/issues/new)
 
 ## 👦 联系方式
+
+- [![](https://img.shields.io/badge/github-wangxinleo-orange)](https://github.com/wangxinleo)
 
 ## 🏘️ 社区
 
