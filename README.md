@@ -8,10 +8,11 @@
 
 ## 🌲 特征
 
-- 使用简单，为方便快速开发，提高开发效率，提供命令行一行式构建。
-- 高自动化，自动拉取模板，自动依赖，自动部署。
-- 框架丰富，提供了绝大多数 nodejs 全栈开发中需要用要的框架组件。**(目前支持 Koa, Vue, 后期会支持 Express, 前端框架 React 考虑中~)**
-- 兼容性高，支持 windows, linux, macos。
+- 项目搭建全自动。使用简单，效率拉满；
+- 丰富的框架集成。满足全栈开发要求，**目前支持 Koa、 Vue， 后期会支持 Express、React**；
+- 标准化目录结构，项目配置随心所欲；
+- 项目金手指。单行指令完成组件、页面、router 路由和 vuex 模块的创建；
+- 兼容性高。支持 windows、linux、macos 等主流操作系统；
 
 ## 🎨 演示
 
@@ -147,6 +148,7 @@ $ fullcode add-vue-store hello -d src/store/modules
     'pages': '@/pages',
   }
   ```
+
 - axios（网络请求 axios 的安装以及二次封装）
 
   简单封装在`src/services/request.js`
